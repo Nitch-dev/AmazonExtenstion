@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "My Extension",
+  "version": "1.0",
+  "description": "Description of your extension",
+  "permissions": [
+    "tabs",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "*://*.youtube.com/*",
+    "*://*.amazon.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.amazon.com/s?k=*"],
+      "js": ["yt.js"]
+    },
+    {
+      "matches": ["*://*.amazon.com/*/dp/*/ref=*"],
+      "js": ["item.js"]
+    },
+    {
+      "matches": ["*://*.amazon.com/ap/signin?*", "*://*.amazon.com/ap/register?*", "*://*.amazon.com/ref=ap_frn_logo", "*://*.amazon.com/ref=nav_logo", "*://*.amazon.com/stores/*"],
+      "js": ["reset.js"]
+    },
+    {
+      "matches": ["*://*.amazon.com/cart/*"],
+      "js": ["cart.js"]
+    },
+    {
+      "matches": ["*://*.amazon.com/gp/goldbox?ref_=nav_cs_gb"],
+      "js": ["de.js"]
+    }
+  ]
+}
